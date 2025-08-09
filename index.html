@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantas Medicinais - Saúde Natural</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #81c784;
+            --accent-color: #ffb74d;
+            --text-color: #333;
+            --light-text: #f5f5f5;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            font-size: 1.2rem;
+        }
+
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .plant-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .plant-card.animate {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .plant-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .plant-scientific {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .benefits-list {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .benefits-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .preparation {
+            background-color: #f1f8e9;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .preparation h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .warnings {
+            background-color: #fff3e0;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .warnings h3 {
+            color: #e65100;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            .plants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Plantas Medicinais</h1>
+        <p class="subtitle">Saúde natural ao seu alcance</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#digestiva">Planta Digestiva</a></li>
+            <li><a href="#ansiedade">Planta para Ansiedade</a></li>
+            <li><a href="#muscular">Planta para Dor Muscular</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Conheça o poder das plantas medicinais</h2>
+            <p>Neste guia, apresentamos três plantas medicinais poderosas que podem ajudar em diversos aspectos da sua saúde. Cada planta tem propriedades únicas e modos específicos de preparo para aproveitar ao máximo seus benefícios.</p>
+            <p>Lembre-se sempre de consultar um profissional de saúde antes de iniciar qualquer tratamento.</p>
+        </div>
+
+<section>
+    <h2>O que é Fitoterapia?</h2>
+    <p>A fitoterapia é a prática de usar plantas e seus extratos para prevenir e tratar doenças. Ela é baseada em conhecimentos tradicionais e também em estudos científicos que comprovam seus efeitos.</p>
+
+    <h2>Importância da Fitoterapia</h2>
+    <p>A importância da fitoterapia tá no fato de ser um tratamento natural, acessível e culturalmente enraizado, que pode:
+<p>*Complementar a medicina tradicional.</p>
+<p>*Reduzir efeitos colaterais de alguns remédios sintéticos.</p>
+<p>*Preservar e valorizar o conhecimento popular e científico sobre plantas medicinais.</p>
+<p>*Oferecer alternativas de baixo custo para prevenção e alívio de sintomas.</p>
+</p>
+
+    <h2>Anti-inflamatórios e Analgésicos Naturais</h2>
+    
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        
+        <!-- Cúrcuma -->
+        <div style="flex: 1; min-width: 250px;">
+            <img src="CURCUMA.jpeg" alt="Cúrcuma" style="width:100%; border-radius: 8px;">
+            <h3>Cúrcuma (Curcuma longa)</h3>
+            <p>Conhecida pelo seu pigmento amarelo intenso, a cúrcuma possui curcumina, um composto com alto poder anti-inflamatório. É muito usada na culinária como tempero e também em chás e cápsulas.</p>
+            <p><strong>Usos comuns:</strong> chás, temperos, leite dourado.</p>
+        </div>
+
+        <!-- Gengibre -->
+        <div style="flex: 1; min-width: 250px;">
+            <img src="GENGIBRE.jpeg" alt="Gengibre" style="width:100%; border-radius: 8px;">
+            <h3>Gengibre (Zingiber officinale)</h3>
+            <p>Possui efeito anti-inflamatório e analgésico, ajudando no alívio de dores musculares e melhorando a digestão. Pode ser consumido cru, em sucos, chás ou até cristalizado.</p>
+            <p><strong>Usos comuns:</strong> chá de gengibre, tempero para carnes e sucos detox.</p>
+        </div>
+
+        <!-- Chá verde -->
+        <div style="flex: 1; min-width: 250px;">
+            <img src="CHA VERDE.jpeg" alt="Chá Verde" style="width:100%; border-radius: 8px;">
+            <h3>Chá verde (Camellia sinensis)</h3>
+            <p>Rico em antioxidantes, o chá verde combate inflamações e auxilia no metabolismo. É muito consumido como infusão quente ou gelada.</p>
+            <p><strong>Usos comuns:</strong> infusão, cápsulas, bebidas geladas.</p>
+        </div>
+
+    </div>
+
+    <p><strong>Observação:</strong> Mesmo naturais, essas plantas podem ter contraindicações. Sempre consulte um profissional de saúde antes de usar.</p>
+</section>
+
+<div> 
+    <h2> PLANTAS</h2>
+</div>
+        <div class="plants-grid">
+            <!-- Planta Digestiva -->
+            <div class="plant-card" id="digestiva">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/64f6685c-b619-49af-8f60-7ef379542840.png" alt="Folhas verdes frescas de hortelã em close-up, mostrando detalhes das veias e bordas serrilhadas na planta medicinal" class="plant-image">
+                <div class="card-content">
+                    <h2>Metha Spicata</h2>
+                    <span class="plant-scientific">Hortelã</span>
+                    <p>A hortelã é uma planta aromática conhecida por suas propriedades digestivas e refrescantes. Muito utilizada na culinária e na medicina natural.</p>
+                    
+                    <div class="preparation">
+                        <h3>Modo de Preparo</h3>
+                        <p>Para preparar um chá digestivo: coloque 1 colher (sopa) de folhas frescas de hortelã em 200ml de água fervente. Abafe por 5 minutos e coe.</p>
+                        <p>Pode ser consumido quente ou frio, após as refeições.</p>
+                    </div>
+
+                    <h3>Como pode te ajudar:</h3>
+                    <ul class="benefits-list">
+                        <li>Alivia a indigestão e gases intestinais</li>
+                        <li>Auxilia no alívio de náuseas</li>
+                        <li>Refresca o hálito naturalmente</li>
+                        <li>Pode ajudar no alívio de cólicas estomacais</li>
+                    </ul>
+
+                    <div class="warnings">
+                        <h3>Cuidados e Contraindicações</h3>
+                        <p>Pode causar alergias em pessoas sensíveis a mentol. Não recomendado para pessoas com refluxo gastroesofágico grave. Gestantes devem consumir com moderação.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planta para Ansiedade -->
+            <div class="plant-card" id="ansiedade">
+                <img src="CAMOMILA.CHA.jpeg" alt="Camomila"" alt="Flores brancas e amarelas de camomila frescas com botões desabrochando em fundo verde" class="plant-image">
+                <div class="card-content">
+                    <h2>Matricaria chamomilla</h2>
+                    <span class="plant-scientific">Camomila</span>
+                    <p>A camomila é uma erva delicada conhecida por seus efeitos calmantes. Seu chá é uma das bebidas herbais mais populares no mundo.</p>
+                    
+                    <div class="preparation">
+                        <h3>Modo de Preparo</h3>
+                        <p>Use 2 colheres (chá) de flores secas de camomila para 200ml de água fervente. Deixe em infusão por 5-7 minutos e coe.</p>
+                        <p>Pode ser adoçado com mel e consumido antes de dormir ou em momentos de estresse.</p>
+                    </div>
+
+                    <h3>Como pode te ajudar:</h3>
+                    <ul class="benefits-list">
+                        <li>Reduz a ansiedade e promove relaxamento</li>
+                        <li>Auxilia no combate à insônia</li>
+                        <li>Ajuda no alívio de dores de cabeça tensionais</li>
+                        <li>Pode melhorar a digestão relacionada ao estresse</li>
+                    </ul>
+
+                    <div class="warnings">
+                        <h3>Cuidados e Contraindicações</h3>
+                        <p>Pessoas alérgicas a plantas da família Asteraceae podem ter reações. Pode potencializar medicamentos sedativos. Uso prolongado deve ser monitorado.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Planta para Dor Muscular -->
+            <div class="plant-card" id="muscular">
+                <img src="CURCUMA.jpeg  " alt="Flores amarelas brilhantes de arnica montana crescendo em campo selvagem, com folhas verdes escuras" class="plant-image">
+                <div class="card-content">
+                    <h2>Arnica</h2>
+                    <span class="plant-scientific">Arnica montana</span>
+                    <p>A arnica é famosa por suas propriedades anti-inflamatórias e analgésicas, especialmente para dores musculares e contusões.</p>
+                    
+                    <div class="preparation">
+                        <h3>Modo de Preparo</h3>
+                        <p>Para uso externo: infusão com 2 colheres (sopa) de flores secas em 200ml de água fervente. Deixe esfriar e use compressas na área afetada.</p>
+                        <p>Também disponível na forma de pomadas e géis.</p>
+                    </div>
+
+                    <h3>Como pode te ajudar:</h3>
+                    <ul class="benefits-list">
+                        <li>Alivia dores musculares e contusões</li>
+                        <li>Reduz inchaço e inflamação</li>
+                        <li>Auxilia na recuperação após exercícios</li>
+                        <li>Pode ajudar em casos de artrite leve</li>
+                    </ul>
+
+                    <div class="warnings">
+                        <h3>Cuidados e Contraindicações</h3>
+                        <p>Não deve ser ingerida sem supervisão médica. Pode causar irritação na pele em pessoas sensíveis. Evite usar em feridas abertas. Não utilizar durante a gravidez.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="more-info">
+            <h2>Informações Adicionais</h2>
+            <p>Lembre-se que o uso medicinal de plantas deve ser feito com cuidado e conhecimento. Algumas plantas podem interagir com medicamentos ou ter efeitos colaterais.</p>
+            <p>Sempre prefira plantas de origem conhecida e cultivo orgânico quando possível. Evite coletar plantas em locais contaminados ou próximos a rodovias.</p>
+            <p>Para uso prolongado ou em caso de doenças crônicas, consulte sempre um especialista.</p>
+        </div>
+    </div>
+
+
+
+
+    <!-- Feedback ---
+            <div><!-- Feedback -->
+<section id="feedback" style="margin-top: 3rem;">
+    <h2>Deixe seu Feedback</h2>
+    <p>Queremos saber a sua opinião! Preencha o formulário abaixo:</p>
+
+    <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfSOi3Puwd0Yuu7ckFoei6TLyzPwit_Yb0eMF-crXmC8h6enA/viewform?embedded=true"
+        width="100%" 
+        height="500"   <!-- diminui esse valor pra menos espaço -->
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0"
+        loading="lazy"
+        title="Formulário de Feedback">
+        Carregando…
+    </iframe>
+</section>
+
+    </div>    
+    <footer>
+        <p>EQUIPE: Ágata Andrade,  Antônio Samuel,   Ana Vitória,    Victor Emanuel,   Sarah Regina </p>
+        <img src="logo.jpeg" alt="Logo" width="80">  <p>E.M.E.I.F 29 DE AGOSTO PROFESSORA MARIA ELIELZA PINHEIRO GUERRA</p>
+
+        <p> PLANTAS MEDICINAIS</p>
+        <p>Este site tem propósito informativo e não substitui orientações médicas.</p>
+        <div class="social-links">
+            <p>📸 Instagram do criador: <a href="https://instagram.com/fernandallemosz" target="_blank">@fernandallemosz</a></p>
+
+        </div>
+    </footer>
+
+    <script>
+        // Adicionando comportamentos dinâmicos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Suavizar rolagem para os links internos
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Animação para os cards quando aparecem na tela
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.plant-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
